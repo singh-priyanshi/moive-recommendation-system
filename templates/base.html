@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge Chrome=1">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+<style>
+.navbar{
+font-family: 'Lato', sans-serif;
+color:grey;
+font-size: 12px !important;
+padding: 5px; }
+
+.nav-link{
+color:white;
+}
+
+.nav-link:hover {
+color:white;
+background-color:gray;
+}
+
+.nav-name{
+color:#ffe196;
+
+}
+
+.nav-name:hover {
+color:#f1f1b0;
+}
+
+.nav-logout:hover {
+color:white;
+background-color:#ff6f5e;
+}
+
+.navbar-brand{
+color:#c0ffb3;
+font-weight:bold;
+}
+
+.navbar-brand:hover{
+color:#52de97;
+}
+.btn-genre{
+color:white;
+font-size: 13px;
+padding:5px;
+}
+.btn-genre:hover{
+color:white;
+background-color:gray;
+}
+</style>
+
+<!--<body background="https://assets.nflxext.com/ffe/siteui/vlv3/d1f1a1dc-c017-4189-8fc2-193a3f3699b8/9927403b-6c43-4d43-b2ba-499f96079dcf/IN-en-20200106-popsignuptwoweeks-perspective_alpha_website_large.jpg">-->
+<body>
+<nav class="navbar navbar-expand-sm bg-dark">
+
+  <a class="navbar-brand" href="/">MovieLens100K</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse collapse " >
+    <ul class="nav  navbar-nav  ">
+
+      {% if user.is_authenticated %}
+
+          <li class="nav-item" >
+            <a class="nav-link nav-name " href="/">Hello, {{user.username}}</a>
+          </li>
+
+         <li class="nav-item">
+            <a class="nav-link nav-logout" href="/myratings">My Ratings</a>
+         </li>
+
+          <li class="nav-item">
+            <a class="nav-link nav-logout" href="/logout">Logout</a>
+          </li>
+
+         <li class="nav-item ">
+            <a class="nav-link" href="/recommend">Recommend</a>
+         </li>
+
+      {% else %}
+          <li class="nav-item">
+            <a  class="nav-link" href="/login">SignIn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">SignUp</a>
+          </li>
+      {% endif %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+
+
+    </ul>
+
+  </div>
+</nav>
+
+      {% block content %}
+
+      {% endblock %}
+
+</body>
+</html>

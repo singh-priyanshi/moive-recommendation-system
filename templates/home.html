@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<head>
+  <title>Home</title>
+</head>
+<style>
+.row{
+margin:15px;
+text-align: center;
+}
+
+.card{
+margin:5px;
+}
+</style>
+<div>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+  <div class="collapse navbar-collapse" id="navbarColor02">
+
+        <form class="form-inline" action="/" method="POST">
+        {% csrf_token %}
+        <ul class="navbar-nav">
+        <li class="nav-item">
+        <button class="btn btn-genre " name="genre" value="Action">Action </button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Adventure">Adventure</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Animation">Animation</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Children's">Children's</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Comedy">Comedy</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Crime">Crime</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Documentary">Documentary</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre" name="genre" value="Drama">Drama</button>
+        </li>
+
+        <li class="nav-item ">
+        <button class="btn btn-genre"  name="genre" value="Fantasy">Fantasy </button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Film-Noir">Film-Noir</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Horror">Horror</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Musical">Musical</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Mystery">Mystery</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Romance">Romance</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Sci-Fi">Sci-Fi</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Thriller">Thriller</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="War" >War</button>
+        </li>
+
+        <li class="nav-item">
+        <button class="btn btn-genre"  name="genre" value="Western" >Western</button>
+        </li>
+        </ul>
+          <input class="form-control search-input ml-sm-4 mr-sm-1" type="text"  name="query" placeholder="Search">
+          <button class="btn btn-secondary search-btn" type="submit">Go</button>
+        </form>
+  </div>
+</nav>
+</div>
+    <div>
+          {% if genre %}
+          <h3>Top movies in {{genre}}</h3>
+          {% elif query %}
+          <h3>Search result for : {{query}}</h3>
+          {% endif %}
+          <div class="row justify-content-center">
+            {% if not movies.empty %}
+            {% for movie in movies.itertuples %}
+                <div class="card" style="width: 18rem;">
+                    <img src={{movie.poster}} class="card-img-top img-responsive" alt="">
+                    <div class="card-body">
+                      <h5 class="card-title"> {{movie.title}} </h5>
+                      <h6 class="card-title"> {{ movie.movie_id }} </h6>
+                      <p class="card-text">{{movie.rating}}</p>
+                      <a href="{% url 'detail' movie.movie_id movie.imdb_id %}" class="btn btn-primary btn-sm" role="button">Details</a>
+                    </div>
+                </div>
+            {% endfor %}
+            {% endif %}
+          </div>
+    </div>
+
+{% endblock %}
+

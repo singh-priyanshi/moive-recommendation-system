@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+
+<title> SignUp Form</title>
+
+<script>
+    $(document).ready(function() {
+        // messages timeout for 10 sec
+        setTimeout(function() {
+            $('.message').fadeOut('fast');
+        }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+
+        // delete message
+        $('.del-msg').live('click',function(){
+            $('.del-msg').parent().attr('style', 'display:none;');
+        })
+    });
+</script>
+<style type="text/css">
+
+    .form-control{
+		height: 40px;
+		box-shadow: none;
+        color: #969fa4;
+       
+	}
+	.form-control:focus{
+		border-color: #5cb85c;
+	}
+    .form-control, .btn{
+        border-radius: 3px;
+    }
+	.signup-form{
+		width: 400px;
+		margin: 0 auto;
+        padding: 30px 0;
+        
+	}
+	.signup-form h2{
+		color: white;
+        margin: 0 0 15px;
+		position: relative;
+		text-align: center;
+    }
+	.signup-form h2:before, .signup-form h2:after{
+		content: "";
+		height: 2px;
+		width: 30%;
+		background: #d4d4d4;
+		position: absolute;
+		top: 50%;
+		z-index: 2;
+	}
+	.signup-form h2:before{
+		left: 0;
+	}
+	.signup-form h2:after{
+		right: 0;
+	}
+    .signup-form .hint-text{
+		color: #fc9403;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+    .signup-form form{
+		color: #999;
+		border-radius: 3px;
+    	margin-bottom: 15px;
+
+        background:rgba(1,1,1,0.7);
+        padding: 30px;
+    }
+	.signup-form .form-group{
+		margin-bottom: 20px;
+	}
+	.signup-form input[type="checkbox"]{
+		margin-top: 3px;
+	}
+	.signup-form .btn{
+        font-size: 16px;
+        font-weight: bold;
+		min-width: 140px;
+        outline: none !important;
+    }
+	.signup-form .row div:first-child{
+		padding-right: 10px;
+	}
+	.signup-form .row div:last-child{
+		padding-left: 10px;
+	}
+    .signup-form a{
+		color: #5cb85c;
+		text-decoration: none;
+	}
+    .signup-form a:hover{
+		text-decoration: none;
+		color:white;
+	}
+
+
+	.text-center{
+	color:white;
+	}
+    b {
+    color: white;
+    }
+</style>
+</head>
+
+<div class="signup-form">
+     {% for message in messages %}
+       <div class="message alert alert-danger" role="alert">
+                {{ message }}
+           <a href="#" class="del-msg">&times;</a>
+        </div>
+     {% endfor %}
+    <form action="/signup" method="post">
+        {% csrf_token %}
+		<h2>Register</h2>
+		<p class="hint-text">Create your account, because it's free :D</p>
+        <div class="form-group">
+			<input type="text" class="form-control" id = "username" name="username" placeholder="User Name" required="required">
+        </div>
+        <div class="form-group">
+        	<input type="email" class="form-control" id = "email" name="email" placeholder="Email" required="required">
+        </div>
+		<div class="form-group">
+            <input type="password" class="form-control" name="password" id="password1" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Conform-Password" required="required">
+        </div>
+
+        <div class="form-group">
+            <input type="number" class="form-control" name="age" id="age" placeholder="Age" required="required">
+        </div>
+
+        <div class="form-group">
+            <b>Gender: </b>
+            <select id="gender" name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+           <b>Profession: </b>
+            <select id="profession" name="profession">
+            <option value="Administrator">Administrator</option>
+            <option value="Artist">Artist</option>
+            <option value="Doctor">Doctor</option>
+            <option value="Educator">Educator</option>
+            <option value="Engineer">Engineer</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Executive">Executive</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Homemaker">Homemaker</option>
+            <option value="Lawyer">Lawyer</option>
+            <option value="Librarian">Librarian</option>
+            <option value="Marketing">Marketing</option>
+            <option value="None">NoneNone</option>
+            <option value="Other">Other</option>
+            <option value="Programmer">Programmer</option>
+            <option value="Retired">Retired</option>
+            <option value="Salesman">Salesman</option>
+            <option value="Scientist">Scientist</option>
+            <option value="Student">Student</option>
+            <option value="Technician">Technician</option>
+            <option value="Writer">Writer</option>  
+           </select>
+        </div>
+
+        <div class="form-group">
+			<label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+		</div>
+		<div class="form-group">
+            <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+        </div>
+    </form>
+	<div class="text-center"><a href="\login" >I already have an account</a></div>
+
+</div>
+
+{% endblock %}

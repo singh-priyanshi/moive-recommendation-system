@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+<head>
+
+<title>LogIn Form</title>
+
+<script>
+    $(document).ready(function() {
+        // messages timeout for 10 sec
+        setTimeout(function() {
+            $('.message').fadeOut('fast');
+        }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+
+        // delete message
+        $('.del-msg').live('click',function(){
+            $('.del-msg').parent().attr('style', 'display:none;');
+        })
+    });
+</script>
+<style type="text/css">
+	.login-form {
+		width: 340px;
+    	margin: 50px auto;
+	}
+    .login-form form {
+    	margin-bottom: 15px;
+        background: #f7f7f7;
+        background:rgba(1,1,1,0.7);
+        padding: 30px;
+    }
+    .login-form h2 {
+        margin: 0 0 15px;
+    }
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+    .btn {
+        font-size: 15px;
+        font-weight: bold;
+    }
+    .text-center{
+    color:white;
+    }
+    a:hover {
+    text-decoration:none;
+    color:white;
+    }
+</style>
+</head>
+
+
+<div class="login-form">
+    {% for message in messages %}
+       <div class="message alert alert-danger" role="alert">
+                {{ message }}
+           <a href="#" class="del-msg">&times;</a>
+        </div>
+    {% endfor %}
+
+    <form action="/login" method="post">
+
+        {% csrf_token %}
+
+        <h2 class="text-center">Log In</h2>
+        <div class="form-group">
+            <input type="text" class="form-control"  id="username"  name="username" placeholder="Username" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password"  name="password" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+        <div >
+            <a href="#" >Forgot Password?</a>
+        </div>
+    </form>
+    <p class="text-center"><a href="\signup">Create an Account</a></p>
+
+</div>
+
+
+{% endblock %}
+
+
+
+

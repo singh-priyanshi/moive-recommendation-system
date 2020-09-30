@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<head>
+  <title>My Ratings</title>
+</head>
+<script>
+    $(document).ready(function() {
+        // messages timeout for 10 sec
+        setTimeout(function() {
+            $('.message').fadeOut('fast');
+        }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+
+        // delete message
+        $('.del-msg').live('click',function(){
+            $('.del-msg').parent().attr('style', 'display:none;');
+        })
+    });
+</script>
+
+<script>
+$(document).ready(function(){
+$(document).ready(function(){
+    $('.check').click(function() {
+        $('.check').not(this).prop('checked', false);
+    });
+     $('.updBtn').click(function() {
+      if (!$('.check').is(':checked'))
+           alert("invalid input select rating checkbox...");
+    });
+});
+});
+</script>
+
+<style>
+.row{
+margin:15px;
+text-align: center;
+}
+
+.card{
+margin:5px;
+}
+</style>
+
+<div>
+
+</div>
+    <div>
+          {% for message in messages %}
+            <div class="message alert alert-danger" role="alert">
+                {{ message }}
+           <a href="#" class="del-msg">&times;</a>
+            </div>
+          {% endfor %}
+
+                  <div class=" row justify-content-center ">
+                    {% if not mymovies.empty %}
+                      {% for movie in mymovies.itertuples %}
+
+
+
+                                <div class="card"  style="width: 14rem; padding : 10px;" >
+                                <img src={{movie.poster}} class="card-img-top img-responsive" alt="">
+
+                                    <div class="card-body">
+                                      <h5 class="card-title"> {{ movie.title }} </h5>
+                                      <h6 class="card-title">Movie Id : {{ movie.movie_id }} </h6>
+
+                                      <p  class="card-text"> your rating :  {{ movie.rating }}</p>
+
+                                      <a href="delete/{{movie.id}}/" name="del-rating" class="btn btn-primary btn-sm" role="button">Delete</a>
+
+                                      <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target=".demo">change</button>
+                                      <div class="collapse card-text demo">
+                                            <form action="update/" method="POST" >
+                                            {% csrf_token %}
+                                              <input type="checkbox" name="myrating" class="check" value="1"> 1
+                                              <input type="checkbox" name="myrating" class="check" value="2"> 2
+                                              <input type="checkbox" name="myrating" class="check" value="3"> 3
+                                              <input type="checkbox" name="myrating" class="check" value="4"> 4
+                                              <input type="checkbox" name="myrating" class="check" value="5"> 5
+                                                <br>
+                                              <button type="submit" value="{{movie.id}}" name="upd-rating"  class="btn btn-primary btn-sm updBtn" role="button" >Update</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                      {% endfor %}
+                    {% endif %}
+          </div>
+    </div>
+
+{% endblock %}
+
+
+<!--                       {% for mymovie in mymovies.itertuples %}-->
+
+<!--                            {% if  movie.movie_id|stringformat:"s" == mymovie.mymovie_id|stringformat:"s" %}-->
+
+<!--                            {% else %}-->
+
+<!--                             {% endif %}-->
+<!--                       {% endfor %}-->
+

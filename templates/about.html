@@ -1,0 +1,125 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+
+<title>About</title>
+<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="">
+	<!-- Latest compiled and minified CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet"/>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+        // messages timeout for 10 sec
+        setTimeout(function() {
+            $('.message').fadeOut('fast');
+        }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+
+        // delete message
+        $('.del-msg').live('click',function(){
+            $('.del-msg').parent().attr('style', 'display:none;');
+        })
+    });
+</script>
+<style type="text/css">
+	.login-form {
+		width: 340px;
+    	margin: 50px auto;
+	}
+    .login-form form {
+    	margin-bottom: 15px;
+        background: #f7f7f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+    .login-form h2 {
+        margin: 0 0 15px;
+    }
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+    .btn {
+        font-size: 15px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+
+<!-- Header -->
+<header class="bg-primary text-center py-5 ">
+  <div class="container">
+    <h1 class="font-weight-light text-white">RECOMMENDATION SYSTEM BY IMPLEMENTING COLLABORATIVE FILTERING ALGORITHM BASED ON RATING DIFFERENCE AND USER INTEREST</h1>
+  </div>
+</header>
+<header class="bg-secondary py-5 ">
+  <div class="container">
+    <h3 class=" font-weight-light text-white">Currently, collaborative filtering has been profitably utilized in personalized recommendation systems. However, under the stipulation of extremely sparse rating data, the traditional scheme of similarity amid users is relatively straightforward. Moreover, it does not consider user’s interest, which results in pitiable performance. Due to invariability in rating differences, the accuracy of recommendation systems is hampered. So, here an system is proposed to improve the performance of the traditional collaborative filtering algorithm by considering both user interest and rating difference.</h3>
+  </div>
+</header>
+
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <!-- Team Member 1 -->
+    <div class="col-xl-3 col-md-6 my-4">
+      <div class="card border-0 shadow">
+        <img class="card-img-top" src="{% static 'moviesReviews/images/1.jpg' %}" height="300px" alt="Card image cap">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Priyanshi</h5>
+          <div class="card-text text-black-50">Web Developer</div>
+        </div>
+      </div>
+    </div>
+    <!-- Team Member 2 -->
+    <div class="col-xl-3 col-md-6 my-4">
+      <div class="card border-0 shadow">
+			<img class="card-img-top" src="{% static 'moviesReviews/images/2.jpg' %}" height="300px" alt="Card image cap">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Chinmay</h5>
+          <div class="card-text text-black-50">Web Developer</div>
+        </div>
+      </div>
+    </div>
+    <!-- Team Member 3 -->
+    <div class="col-xl-3 col-md-6 my-4">
+      <div class="card border-0 shadow">
+        <img class="card-img-top" src="{% static 'moviesReviews/images/3.jpg' %}" height="300px" alt="Card image cap">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Pritesh</h5>
+          <div class="card-text text-black-50">Web Developer</div>
+        </div>
+      </div>
+    </div>
+    <!-- Team Member 4 -->
+    <div class="col-xl-3 col-md-6 my-4">
+      <div class="card border-0 shadow">
+		<img class="card-img-top" src="{% static 'moviesReviews/images/4.jpg' %}" height="300px" alt="Card image cap">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Sarang</h5>
+          <div class="card-text text-black-50">Web Developer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.row -->
+
+</div>
+
+<!-- /.container -->
+
+</body>
+
+{% endblock %}
+
+
+
+

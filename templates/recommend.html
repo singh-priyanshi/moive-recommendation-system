@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<head>
+  <title>Recommendation</title>
+</head>
+<style>
+.row{
+margin:15px;
+text-align: center;
+}
+
+.card{
+margin:5px;
+}
+</style>
+<div>
+          {% for message in messages %}
+            <div class="message alert alert-danger" role="alert">
+                {{ message }}
+           <a href="#" class="del-msg">&times;</a>
+            </div>
+          {% endfor %}
+
+                  <h3>trad_MAE : {{trad_MAE}}  modifid_MAE  : {{modifid_MAE}}</h3>
+                  <h3>trad_RMSE : {{trad_RMSE}} modifid_RMSE  : {{modifid_RMSE}}</h3>
+                  <h3>total_time : {{total_time}}</h3>
+                  <div class=" row justify-content-center ">
+                    {% if not modi_r.empty %}
+                    {% for movie in modi_r.itertuples %}
+
+                        {% if movie.movie_id|stringformat:"s" not in mymovies|stringformat:"s" %}
+                            <div class="card" style="width: 14rem; padding : 10px;">
+                                <img src={{movie.poster}} class="card-img-top img-responsive" alt="">
+                                <div class="card-body">
+                                      <h5 class="card-title">{{movie.title}}</h5>
+                                      <h6 class="card-title">movie Id : {{ movie.movie_id }} </h6>
+                                      <p class="card-text">Predicted Rating : {{movie.prediction}}</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+</div>
+
+
+{% endblock %}

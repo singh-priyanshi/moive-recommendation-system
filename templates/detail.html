@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<head>
+  <title>Detail</title>
+</head>
+<style>
+
+</style>
+
+<div class="row">
+  <div class="col-4">
+<!--      <div class="card" style="width: 18rem;">-->
+<!--        <img src={{cover}} class="img-responsive">-->
+<!--      </div>-->
+  </div>
+  <div class="col-8">
+       <div class="centered">
+            <h1>{{movie_info.title}}</h1>
+            <h3><small>Genres :  {{movie_info.genre}}</small></h3>
+            <h3><small>runtimes : {{movie_info.runtimes}}</small></h3>
+           <h3><small>directors : {{movie_info.directors}}</small></h3>
+           <h3><small>year : {{movie_info.year}}</small></h3>
+           <h3><small>languages : {{movie_info.languages}}</small></h3>
+            <div><p>Plot :{{plot}}</p></div>
+            <h3><small>Rating : {{movie_info.rating}}</small></h3>
+            <h3><small>Votes : {{movie_info.votes}}</small></h3>
+        	<h1><small>Have you watch ?</small></h1>
+            <h3><small>Please rate to get recommendation </small></h3>
+  </div>
+  </div>
+</div>
+{% endblock %}
